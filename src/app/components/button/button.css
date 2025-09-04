@@ -1,0 +1,38 @@
+.btn {
+  font-family: 'Poppins', sans-serif;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 2px;
+}
+
+.primary {
+  background: #1f2937;
+  color: #ffffff;
+}
+
+.primary:hover {
+  filter: brightness(1.1);
+}
+
+.secondary {
+  background: #e5e7eb;
+  color: #1f2937;
+}
+
+.secondary:hover {
+  background: #d1d5db;
+}
+
+.danger {
+  background: #ef4444;
+  color: white;
+}
+
+.danger:hover {
+  background: #dc2626;
+}

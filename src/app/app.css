@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+}
+
+
+body {
+  font-family: 'Helvetica', sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content:flex-start;
+}
+

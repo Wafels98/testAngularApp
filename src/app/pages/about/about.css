@@ -1,0 +1,11 @@
+.text-container {
+    display: block;
+    justify-content: center;
+    width: 70%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
