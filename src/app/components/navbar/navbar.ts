@@ -23,16 +23,26 @@ import { Router } from '@angular/router';
 export class Navbar {
   readonly dialog = inject(MatDialog);
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(DialogAnimationsExampleDialog, {
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string) {
+    const dialogRef = this.dialog.open(DialogAnimationsExampleDialog, {
       width: '250px',
       enterAnimationDuration,
       exitAnimationDuration,
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.router.navigate(['/delete'])
     });
+
   }
+
 
   private router = inject(Router);
 
+  navigateToPage(route: string ){
+    this.router.navigate([route])
+  }
 
   navigateToStart() {
     this.router.navigate(['/'])

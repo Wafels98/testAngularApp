@@ -1,5 +1,34 @@
-<main>
-   <div class="map-container">
-    <app-mapcomponent [map]="map"></app-mapcomponent>
+<div class="map-container">
+  <!-- Overlay mit Inputs -->
+  <div class="coord-overlay">
+    <label>
+      Lon:
+      <input type="number" [value]="lon()" (input)="lon.set($any($event.target).valueAsNumber)" step="0.0001">
+    </label>
+    <label>
+      Lat:
+      <input type="number" [value]="lat()" (input)="lat.set($any($event.target).valueAsNumber)" step="0.0001">
+    </label>
+    <label>
+      Zoom:
+      <input type="number" [value]="zoom()" (input)="zoom.set($any($event.target).valueAsNumber)" step="1">
+    </label>
   </div>
-</main>
+
+  <div class="marker-overlay">
+    <label>
+      Marker-Farbe:
+      <input type="color" [value]="markerColor" (input)="markerColor = $any($event.target).value">
+    </label>
+    <button (click)="clearLastMarker()">Clear last</button>
+    <button (click)="clearMarkers()">Clear all</button>
+  </div>
+
+  <div class="layer-switch-overlay">
+    <button (click)="switchBaseMap('OSM')">OSM</button>
+    <button (click)="switchBaseMap('Basemap')">Basemap.de</button>
+    <button (click)="switchBaseMap('DTK')">DTK</button>
+  </div>
+  <!-- OL Map Container -->
+  <app-mapcomponent [map]="map"></app-mapcomponent>
+</div>

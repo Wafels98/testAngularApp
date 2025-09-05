@@ -2,10 +2,11 @@
     <div class="container">
         <div class="logo">Hello World!</div>
         <ul class="nav-links desktop-only">
-                <li><a (click)="navigateToStart()">Start</a></li>
-                <li><a (click)="navigateToAbout()">About</a></li>
-                <li><a (click)="navigateToMap()">Map</a></li>
-            </ul>
-            <app-button label="Hallo" (click)="openDialog('3000ms', '1500ms')" variant="primary"></app-button>
+            <li><a (click)="navigateToPage('/')">Start</a></li>
+            <li><a (click)="navigateToPage('/about')">About</a></li>
+            <li><a (click)="navigateToPage('/map')">Map</a></li>
+            <li><a (click)="navigateToPage('/login')">Login</a></li>
+        </ul>
+        <app-button label="Hallo" (click)="openDialog('3000ms', '1500ms')" variant="primary"></app-button>
     </div>
 </nav>
