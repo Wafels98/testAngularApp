@@ -13,4 +13,5 @@ import {MatDividerModule} from '@angular/material/divider';
 })
 export class App {
   protected readonly title = signal('testAngularApp');
+  private isLogedIn = signal(false);
 }

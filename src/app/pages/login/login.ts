@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, signal, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,6 +11,8 @@ import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import { fromLonLat } from 'ol/proj';
+import { LoginService } from '../../services/login-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,11 +21,15 @@ import { fromLonLat } from 'ol/proj';
   styleUrl: './login.css'
 })
 export class Login implements OnInit {
+
   readonly email = new FormControl('', [Validators.required, Validators.email]);
 
   errorMessage = signal('');
 
-  constructor() {
+  username = signal('');
+  password = signal('')
+
+  constructor(private loginService: LoginService) {
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessage());
@@ -39,6 +45,23 @@ export class Login implements OnInit {
     }
   }
 
+  loginRequest() {
+  const usn = this.username();
+  const pw = this.password();
+  console.log('Login mit:', usn, pw);
+
+  this.loginService.loginCall(usn, pw).subscribe({
+    next: data => {
+      console.log('Antwort: ', data);
+      this.loginService.isLoggedIn.set(true); 
+      this.navigateToPage("/profile");
+    },
+    error: err => {
+      console.error('Fehler: ', err);
+      this.loginService.isLoggedIn.set(false);
+    }
+  });
+}
 
   private map!: Map;
 
@@ -60,4 +83,12 @@ export class Login implements OnInit {
       })
     });
   }
+
+
+  private router = inject(Router);
+
+  navigateToPage(route: string ){
+    this.router.navigate([route])
+  }
+
 }

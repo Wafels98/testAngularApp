@@ -1,19 +1,20 @@
 <mat-card class="box-container">
-    <h1>Login to use all our services:</h1>
-    <div class="container">
-        <mat-form-field class="form-field">
-            <mat-label>Password</mat-label>
-            <input matInput type="password" required>
-        </mat-form-field>
-        <mat-form-field class="form-field">
-            <mat-label>Enter your email</mat-label>
-            <input matInput placeholder="pat@example.com" [formControl]="email" (blur)="updateErrorMessage()"
-                required />
-            @if (email.invalid) {
-            <mat-error>{{errorMessage()}}</mat-error>
-            }
-        </mat-form-field>
-        <app-button class="login-button" label="Login"></app-button>
-    </div>
+  <h1>Login to use all our services:</h1>
+  <div class="container">
+
+    <mat-form-field class="form-field">
+      <mat-label>Enter your username</mat-label>
+      <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" [(ngModel)]="password" name="password" required>
+    </mat-form-field>
+
+    <app-button class="login-button" label="Login" (click)="loginRequest()"></app-button>
+
+  </div>
 </mat-card>
+
 <div id="osm-background" class="osm-background"></div>

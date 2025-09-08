@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, computed } from '@angular/core';
 import { Button } from '../button/button';
 import { ChangeDetectionStrategy } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
@@ -11,16 +11,23 @@ import {
   MatDialogTitle
 } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-
+import { LoginService } from '../../services/login-service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
-  imports: [Button, MatButtonModule],
+  standalone: true,
+  imports: [Button, MatButtonModule, NgIf],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.css'
+  styleUrl: './navbar.css',
 })
 
 export class Navbar {
+
+  constructor(public loginService: LoginService){};
+
+  isLoggedIn = computed(() => this.loginService.isLoggedIn());
+  
   readonly dialog = inject(MatDialog);
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string) {
@@ -42,18 +49,6 @@ export class Navbar {
 
   navigateToPage(route: string ){
     this.router.navigate([route])
-  }
-
-  navigateToStart() {
-    this.router.navigate(['/'])
-  }
-
-  navigateToAbout() {
-    this.router.navigate(['/about'])
-  }
-
-  navigateToMap() {
-    this.router.navigate(['/map'])
   }
 
 }
