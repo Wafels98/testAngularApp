@@ -12,7 +12,8 @@
       <input matInput type="password" [(ngModel)]="password" name="password" required>
     </mat-form-field>
 
-    <app-button class="login-button" label="Login" (click)="loginRequest()"></app-button>
+    <app-button class="login-button" label="Random Login" (click)="onLoginRandom()"></app-button>
+    <app-button class="login-button" label="Login" (click)="onLogin()"></app-button>
 
   </div>
 </mat-card>

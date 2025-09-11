@@ -26,7 +26,9 @@ export class Navbar {
 
   constructor(public loginService: LoginService){};
 
-  isLoggedIn = computed(() => this.loginService.isLoggedIn());
+  isLoggedIn() {
+		return this.loginService.isLoggedIn();
+	}
   
   readonly dialog = inject(MatDialog);
 

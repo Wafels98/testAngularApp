@@ -1,1 +1,30 @@
-<p>profile works!</p>
+<div *ngIf="!user">
+    <p>Lade Profildaten...</p>
+</div>
+<div class="container">
+    <div *ngIf="user" class="profile-container">
+        <mat-card class="profil-card">
+            <img mat-card-avatar [src]="user.image || 'assets/default-avatar.png'" alt="Profilbild">
+            <mat-card-title>{{ user.firstName }} {{ user.lastName }}</mat-card-title>
+            <mat-card-subtitle>{{ user.company.title }} at {{ user.company.name}}</mat-card-subtitle>
+
+            <mat-card-content>
+                <mat-list>
+                    <mat-list-item>
+                        <strong>Email:</strong> {{ user.email }}
+                    </mat-list-item>
+                    <mat-list-item>
+                        <strong>Rolle:</strong> {{ user.role }}
+                    </mat-list-item>
+                    <mat-list-item>
+                        <strong>Telefon:</strong> {{ user.phone || 'Keine Angabe' }}
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+
+            <mat-card-actions>
+                <app-button label="Ausloggen" (click)="logOut()"></app-button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

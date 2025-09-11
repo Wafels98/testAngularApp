@@ -1,0 +1,8 @@
+<div *ngIf="!checkedRole">
+	Lade User-Daten...
+</div>
+
+<div *ngIf="checkedRole">
+	<p *ngIf="isAdmin">Glückwunsch, du bist Admin!</p>
+	<p *ngIf="!isAdmin">Du bist nicht berechtigt, diese Seite einzusehen.</p>
+</div>

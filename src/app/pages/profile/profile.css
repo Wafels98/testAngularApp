@@ -1,0 +1,23 @@
+.profil-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 2rem;
+}
+
+.profil-card {
+    display: block;
+    justify-content: center;
+	width: 400px;
+    margin: 50px;
+}
+.text-container {
+    display: block;
+    justify-content: center;
+    width: 70%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}

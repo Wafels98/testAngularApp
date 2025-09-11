@@ -29,6 +29,13 @@
     <button (click)="switchBaseMap('Basemap')">Basemap.de</button>
     <button (click)="switchBaseMap('DTK')">DTK</button>
   </div>
+
+  <div class="user-nav-overlay">
+    <button (click)="prevUser()">⬅</button>
+    <span>{{ currentUserIndex >= 0 ? userLayerUsers[currentUserIndex].get('name') : '' }}</span>
+    <button (click)="nextUser()">➡</button>
+    <button (click)="goToCurrentUser()">Current User</button>
+  </div>
   <!-- OL Map Container -->
   <app-mapcomponent [map]="map"></app-mapcomponent>
 </div>

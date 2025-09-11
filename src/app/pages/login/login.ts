@@ -27,7 +27,7 @@ export class Login implements OnInit {
   errorMessage = signal('');
 
   username = signal('');
-  password = signal('')
+  password = signal('');
 
   constructor(private loginService: LoginService) {
     merge(this.email.statusChanges, this.email.valueChanges)
@@ -45,23 +45,55 @@ export class Login implements OnInit {
     }
   }
 
-  loginRequest() {
-  const usn = this.username();
-  const pw = this.password();
-  console.log('Login mit:', usn, pw);
-
-  this.loginService.loginCall(usn, pw).subscribe({
-    next: data => {
-      console.log('Antwort: ', data);
-      this.loginService.isLoggedIn.set(true); 
-      this.navigateToPage("/profile");
-    },
-    error: err => {
-      console.error('Fehler: ', err);
-      this.loginService.isLoggedIn.set(false);
+  async onLogin() {
+    try {
+      await this.loginService.loginCallAsync(this.username(), this.password());
+      console.log('Login erfolgreich!');
+      const role = this.loginService.getUserRole();
+      console.log('User-Rolle:', role);
+      this.navigateToPage('/profile')
+    } catch (err) {
+      console.error('Login fehlgeschlagen', err);
     }
-  });
-}
+
+  }
+
+  async onLoginRandom() {
+    try {
+      // Alle User von DummyJSON laden
+      const res: any = await this.loginService.http.get('https://dummyjson.com/users?limit=0').toPromise();
+      const users = res.users as any[];
+
+      if (!users || users.length === 0) {
+        throw new Error('Keine User gefunden');
+      }
+
+      // Zufälligen User auswählen
+      const randomUser = users[Math.floor(Math.random() * users.length)];
+
+      // CurrentUser im LoginService setzen
+      this.loginService.currentUser = randomUser;
+
+      this.loginService.accessToken.set(res.accessToken);
+      this.loginService.refreshToken.set(res.refreshToken);
+      this.loginService.isLoggedIn.set(true);
+
+      // Tokens auch in LocalStorage speichern
+      localStorage.setItem('accessToken', res.accessToken);
+      localStorage.setItem('refreshToken', res.refreshToken);
+      
+      console.log('Zufälliger Login erfolgreich!', randomUser);
+
+      // Optional: Rolle setzen oder ableiten
+      const role = this.loginService.getUserRole?.() ?? 'user';
+      console.log('User-Rolle:', role);
+
+      // Weiterleiten zum Profil
+      this.navigateToPage('/profile');
+    } catch (err) {
+      console.error('Zufälliger Login fehlgeschlagen', err);
+    }
+  }
 
   private map!: Map;
 
@@ -87,7 +119,7 @@ export class Login implements OnInit {
 
   private router = inject(Router);
 
-  navigateToPage(route: string ){
+  navigateToPage(route: string) {
     this.router.navigate([route])
   }
 

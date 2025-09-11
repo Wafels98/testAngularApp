@@ -69,3 +69,18 @@ main {
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   z-index: 10;
 }
+
+.user-nav-overlay {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  margin-top: 360px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 10;
+}

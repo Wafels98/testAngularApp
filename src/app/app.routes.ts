@@ -5,6 +5,7 @@ import { MapPage } from './pages/map-page/map-page';
 import { Delete } from './pages/delete/delete';
 import { Login } from './pages/login/login';
 import { Profile } from './pages/profile/profile';
+import { AdminPage } from './pages/admin-page/admin-page';
 
 export const routes: Routes = [
     { path: "", component: Home },
@@ -12,5 +13,6 @@ export const routes: Routes = [
     { path: "map", component: MapPage },
     { path: "delete", component: Delete },
     { path: "login", component: Login },
-    { path: "profile", component: Profile }
+    { path: "profile", component: Profile },
+    { path: "admin", component: AdminPage }
 ];
