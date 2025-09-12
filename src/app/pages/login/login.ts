@@ -37,9 +37,9 @@ export class Login implements OnInit {
 
   updateErrorMessage() {
     if (this.email.hasError('required')) {
-      this.errorMessage.set('You must enter a value');
+      this.errorMessage.set('Es muss eine Email-Adresse angegeben werden!');
     } else if (this.email.hasError('email')) {
-      this.errorMessage.set('Not a valid email');
+      this.errorMessage.set('Keine gültige Email-Adresse');
     } else {
       this.errorMessage.set('');
     }

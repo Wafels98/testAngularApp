@@ -102,27 +102,31 @@ export class MapPage implements OnInit {
       }
     }
 
-    // Dummy-API-User laden
-    this.loginService.http.get('https://dummyjson.com/users?limit=208').subscribe((res: any) => {
-      const users = res.users as any[];
+    const role = this.loginService.getUserRole();
 
-      users.forEach(u => {
-        if (currentUser && u.id === currentUser.id) return;
+    if (role == 'admin' || role == 'moderator') {
+      // Dummy-API-User laden
+      this.loginService.http.get('https://dummyjson.com/users?limit=208').subscribe((res: any) => {
+        const users = res.users as any[];
 
-        const coords = this.getUserCoordinates(u);
-        if (coords) {
-          const f = this.addUserMarker(
-            coords[0],
-            coords[1],
-            false,
-            u.firstName,
-            u.lastName,
-            u.image
-          );
-          this.userLayerUsers.push(f);
-        }
+        users.forEach(u => {
+          if (currentUser && u.id === currentUser.id) return;
+
+          const coords = this.getUserCoordinates(u);
+          if (coords) {
+            const f = this.addUserMarker(
+              coords[0],
+              coords[1],
+              false,
+              u.firstName,
+              u.lastName,
+              u.image
+            );
+            this.userLayerUsers.push(f);
+          }
+        });
       });
-    });
+    }
   }
 
 
@@ -131,14 +135,14 @@ export class MapPage implements OnInit {
 
     // Prüfen auf direkte lon/lat-Eigenschaften
     if ('lon' in user && 'lat' in user) {
-      return [user.lon, user.lat]; // [lon, lat]
+      return [user.lon, user.lat];
     }
 
     // Prüfen auf verschachtelte API-Koordinaten
     if (user.address?.coordinates) {
       const lng = user.address.coordinates.lng;
       const lat = user.address.coordinates.lat;
-      return [lng, lat]; // [lon, lat] für OpenLayers
+      return [lng, lat];
     }
 
     return null;

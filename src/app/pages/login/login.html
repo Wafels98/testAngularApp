@@ -11,8 +11,8 @@
       <mat-label>Password</mat-label>
       <input matInput type="password" [(ngModel)]="password" name="password" required>
     </mat-form-field>
-
-    <app-button class="login-button" label="Random Login" (click)="onLoginRandom()"></app-button>
+    <p>Noch keinen Account? Dann registriere dich hier: <a (click)="navigateToPage('/registration')">registrieren</a></p>
+    <!-- <app-button class="login-button" label="Random Login" (click)="onLoginRandom()"></app-button> -->
     <app-button class="login-button" label="Login" (click)="onLogin()"></app-button>
 
   </div>

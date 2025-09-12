@@ -1,0 +1,45 @@
+<mat-card class="box-container">
+    <h1>Registrierung:</h1>
+
+    <div class="container">
+
+        <!-- Vorname -->
+        <mat-form-field class="form-field">
+            <mat-label>Vorname:</mat-label>
+            <input matInput placeholder="Max" [formControl]="firstName">
+        </mat-form-field>
+
+        <!-- Nachname -->
+        <mat-form-field class="form-field">
+            <mat-label>Nachname:</mat-label>
+            <input matInput placeholder="Mustermann" [formControl]="lastName">
+        </mat-form-field>
+
+        <!-- Username -->
+        <mat-form-field class="form-field">
+            <mat-label>Benutzername:</mat-label>
+            <input matInput placeholder="max123" [formControl]="username">
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field class="form-field">
+            <mat-label>Email-Adresse:</mat-label>
+            <input matInput placeholder="hallo@beispiel.de" [formControl]="email">
+        </mat-form-field>
+
+        <!-- Passwort -->
+        <mat-form-field class="form-field">
+            <mat-label>Passwort:</mat-label>
+            <input matInput placeholder="********" type="password" [formControl]="password"
+                [matTooltip]="passwordTooltipText" matTooltipPosition="above" matTooltipClass="password-tooltip"
+                (focus)="tooltip.show()" (blur)="tooltip.hide()" #tooltip="matTooltip" />
+        </mat-form-field>
+
+        <!-- Allgemeine Fehler -->
+        <p *ngIf="errorMessage()" class="error-message">{{ errorMessage() }}</p>
+
+        <!-- Submit Button -->
+        <app-button class="submit-button" label="Registrieren" (click)="onSubmit()"></app-button>
+
+    </div>
+</mat-card>

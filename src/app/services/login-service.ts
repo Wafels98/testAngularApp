@@ -93,4 +93,19 @@ export class LoginService {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
   }
+
+  public async addUser(fisrtName: string, lastName: string, email: string, username: string, password: string) {
+    return await firstValueFrom(this.http.post<any>(
+      'https://dummyjson.com/users/add',
+      { 'fisrtName' : fisrtName,
+        'lastName' : lastName,
+        'email' : email,
+        'username' : username,
+        'password' : password},
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      }
+    ));
+  }
+
 }
