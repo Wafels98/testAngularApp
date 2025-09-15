@@ -1,0 +1,21 @@
+.todo-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.todo-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.todo-input {
+  flex: 1;
+}
+
+mat-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

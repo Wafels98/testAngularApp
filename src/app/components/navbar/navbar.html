@@ -7,6 +7,7 @@
             <li><a (click)="navigateToPage('/map')">Map</a></li>
             <li *ngIf="!isLoggedIn()"><a (click)="navigateToPage('/login')">Login</a></li>
             <li *ngIf="isLoggedIn()"><a (click)="navigateToPage('/profile')">Profile</a></li>
+            <li *ngIf="isLoggedIn()"><a (click)="navigateToPage('/todo')">ToDo's</a></li>
         </ul>
         <app-button label="Hallo" (click)="openDialog('3000ms', '1500ms')" variant="primary"></app-button>
     </div>

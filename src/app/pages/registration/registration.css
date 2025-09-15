@@ -16,7 +16,8 @@
     display: block;
     padding: 32px;
     margin: 120px;
-    z-index: 10;   
+    z-index: 10;  
+    width: 500px; 
 }
 
 .submit-button {
@@ -43,4 +44,9 @@
   color: red;
   margin-top: 10px;
   font-weight: 500;
+}
+
+a {
+    color: rgba(122, 219, 66, 0.8);
+    font-weight: 500;
 }

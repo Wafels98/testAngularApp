@@ -8,7 +8,7 @@ import { Profile } from './pages/profile/profile';
 import { AdminPage } from './pages/admin-page/admin-page';
 import { Registration } from './pages/registration/registration';
 import { Products } from './pages/products/products';
-import { Todo } from './pages/todo/todo';
+import { TodoPage } from './pages/todo/todo';
 
 export const routes: Routes = [
     { path: "", component: Home },
@@ -20,5 +20,5 @@ export const routes: Routes = [
     { path: "admin", component: AdminPage },
     {path: "registration", component: Registration},
     {path: "products", component: Products},
-    {path: "todo", component: Todo}
+    {path: "todo", component: TodoPage}
 ];

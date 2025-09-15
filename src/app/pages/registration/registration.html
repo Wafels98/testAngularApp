@@ -1,8 +1,6 @@
 <mat-card class="box-container">
-    <h1>Registrierung:</h1>
-
-    <div class="container">
-
+    <div *ngIf="!registrationSuccessful()" class="container">
+        <h1>Registrierung:</h1>
         <!-- Vorname -->
         <mat-form-field class="form-field">
             <mat-label>Vorname:</mat-label>
@@ -41,5 +39,8 @@
         <!-- Submit Button -->
         <app-button class="submit-button" label="Registrieren" (click)="onSubmit()"></app-button>
 
+    </div>
+    <div *ngIf="registrationSuccessful()" class="container">
+        <p>Deine Registrierung war erfolgreich! <a (click)="navigateToPage('/login')">Zurück zum Login</a></p>
     </div>
 </mat-card>

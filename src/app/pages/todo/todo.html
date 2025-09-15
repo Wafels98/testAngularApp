@@ -1,1 +1,17 @@
-<p>todo works!</p>
+<form (submit)="addTodo(); $event.preventDefault()" class="todo-form">
+  <mat-form-field appearance="outline" class="todo-input">
+    <mat-label>Neues Todo</mat-label>
+    <input matInput [formControl]="todoInput" placeholder="Todo eingeben" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Hinzufügen</button>
+</form>
+
+<mat-list>
+  <app-todo-list-item
+    *ngFor="let todo of todoList()"
+    [todo]="todo"
+    (toggle)="checkTodo($event)"
+    (delete)="deleteTodo($event)"
+    (update)="updateTodo($event)">
+  </app-todo-list-item>
+</mat-list>

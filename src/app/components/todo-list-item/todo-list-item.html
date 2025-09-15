@@ -1,0 +1,11 @@
+<mat-list-item>
+    <mat-checkbox [checked]="todo.completed" (change)="toggle.emit(todo)">
+    </mat-checkbox>
+
+    <span *ngIf="!editing">{{ todo.todo }}</span>
+    <input *ngIf="editing" [(ngModel)]="editText" matInput />
+
+    <button mat-icon-button color="primary" *ngIf="!editing" (click)="startEdit()">✏️</button>
+    <button mat-icon-button color="primary" *ngIf="editing" (click)="saveEdit()">✅</button>
+    <button mat-icon-button color="warn" (click)="delete.emit(todo)">🗑️</button>
+</mat-list-item>
